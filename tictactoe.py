@@ -12,21 +12,21 @@ def print_board():
     print(' ---------')
     for row in board:
         print(' ',row[0],'|',row[1],'|',row[2])
-        print(' ---------')
+        print(' --------')
 
-def have_empty_room():
+def have_empty_space():
     for row in board:
-        for room in row:
-            if not room:
+        for space in row:
+            if not space:
                 return True
     return False
 
-def set_room_state(roomxy,state):
-    x = int(roomxy[0])-1
-    y = int(roomxy[1])-1
+def set_space_state(spacexy,state):
+    x = int(spacexy[0])-1
+    y = int(spacexy[1])-1
     row = board[x]
-    room = row[y]
-    if not room:
+    space = row[y]
+    if not space:
         board[x][y] = state
         return True
     return False
@@ -81,7 +81,7 @@ def check_for_win():
 turn = 'o'
 start()
 
-while have_empty_room():
+while have_empty_space():
     print_board()
     print('\n')
     if turn == 'o':
@@ -92,7 +92,7 @@ while have_empty_room():
     while True:
         xy = int(input('enter x and y: '))
         if check_xy(xy):
-            if set_room_state(str(xy),turn):
+            if set_space_state(str(xy),turn):
                 break
             print('This place is taken already')
             continue
@@ -103,3 +103,4 @@ while have_empty_room():
 print_board()
 print('Game Over')
 input()
+
